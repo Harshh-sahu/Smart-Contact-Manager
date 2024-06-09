@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{normal/Base::layout(~{::section})}">
+
+<head>
+	<meta charset="UTF-8" />
+	<title>Update Your Contact</title>
+</head>
+
+<body>
+	<section>
+		<div class="card mr-3 ml-3">
+			<div class="card-body">
+				<h1 class="text-center">Update Your Profile</h1>
+				<div class="container-fluid mt-1">
+					<div class="row">
+						<div class="col md-8 offset-md-2">
+							<form action="#" th:object="${user}" enctype="multipart/form-data" method="POST"
+								th:action="@{/user/process-user-update}" class="mt-2">
+								<!-- Hidden ID Field -->
+								<input type="hidden" th:value="${user.id}" name="id" />
+								<!-- Name Field -->
+								<div class="input-group">
+									<div class="input-group-prepend">
+										<div class="input-group-text"><i class="fa fa-plus"></i></div>
+									</div>
+									<input th:value="${user.name}" required type="text" id="name" name="name"
+										placeholder="Enter name Here" class="form-control" />
+								</div>
+								<!-- Second Name Field -->
+
+								<!-- Phone Field -->
+
+								<!-- Email Field -->
+								<div class="input-group mt-3">
+									<div class="input-group-prepend">
+										<div class="input-group-text"><i class="fa-solid fa-envelope"></i></div>
+									</div>
+									<input th:value="${user.email}" required type="email" id="email" name="email"
+										placeholder="Enter email Here" class="form-control" />
+								</div>
+								<!-- Work Field -->
+
+								<!-- Description Field -->
+								<div class="form-group mt-3">
+									<textarea th:text="${user.about}" name="description" id="description"
+										class="form-control" placeholder="Enter your contact description"
+										rows="10"></textarea>
+								</div>
+								<!-- Profile Image Display -->
+								<div class="container text-center">
+									<img style="width:250px; height:250px;" class="img-fluid my_profile_picture"
+										th:src="@{'/img/' + ${user.imageUrl}}" alt="" />
+								</div>
+								<!-- Profile Image Upload -->
+								<div class="container mt-5">
+									<div class="text-center">
+										<div class="mb-3">
+											<label for="profileImage" class="form-label">Update Profile Image</label>
+											<input class="form-control" type="file" id="profileImage"
+												name="profileImage">
+										</div>
+									</div>
+								</div>
+								<!-- Save Button -->
+								<div class="container text-center">
+									<form method="post" th:action="@{'/user/process-user-update/'+${user.id}}"
+										class="mt-2">
+										<button type="submit" class="btn btn-primary btn-sm btn-block">Update</button>
+
+									</form>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+
+</html>
